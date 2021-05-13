@@ -10,10 +10,8 @@ app.get('/api', (req, res) => {
 
 app.post('/api/mms', (request, res) => {
     console.log(request);
-    console.log(request.body);
-    res.setHeader('Content-Type', 'text/html')
-    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate')
-    res.end('Api services are running!')
+    const { body } = request
+    res.send(`Hello ${body.name}, you just parsed the request body!`)
   }
   );
 
