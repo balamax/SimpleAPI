@@ -1,30 +1,29 @@
 var twilio = require('twilio');
 
 const twilioProcess = {
-    async sendSMS (req, res) {
+    async sendSMS (request, res) {
       try {
-        const { body } = req
-        console.log(body);
-        if(body.authCode == 'BKSL'){
+        console.log(request.body);
+        if(request.body.authCode == 'BKSL'){
 
-          if(body.asid == null){
+          if(request.body.asid == null){
             return res.send({success:false, error: 'Invalid request header'});
           }
-          if(body.atkn == null || body.message == null){
+          if(request.body.atkn == null || request.body.message == null){
             return res.send({success:false, error: 'Invalid request property'});
           }
-          if(body.from == null || body.to == null){
+          if(request.body.from == null || request.body.to == null){
             return res.send({success:false, error: 'Invalid message property'});
           }
-          var accountSid = body.asid;
-          var authToken = body.atkn;
+          var accountSid = request.body.asid;
+          var authToken = request.body.atkn;
           
           var client = new twilio(accountSid, authToken);
           
           client.messages.create({
-              body: body.message,
-              to: body.to, 
-              from: body.from 
+              body: request.body.message,
+              to: request.body.to, 
+              from: request.body.from 
           })
           .then((message) => {
             console.log(message);

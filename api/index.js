@@ -8,6 +8,15 @@ app.get('/api', (req, res) => {
   res.end('Api services are running!')
 })
 
+app.post('/api/mms', (request, res) => {
+    console.log(request);
+    console.log(request.body);
+    res.setHeader('Content-Type', 'text/html')
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate')
+    res.end('Api services are running!')
+  }
+  );
+
 app.post('/api/sms', twilioProcess.sendSMS);
 
 module.exports = app
