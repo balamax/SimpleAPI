@@ -1,5 +1,4 @@
 const app = require('express')()
-const twilioProcess = require('../controllers/twilio')
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'text/html')
