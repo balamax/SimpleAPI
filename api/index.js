@@ -7,10 +7,6 @@ app.get('/api', (req, res) => {
   res.end(`Hello! Go to item: `)
 })
 
-app.get('/', function(req, res) {
-    res.send('Server is running and API is available to consume!');  
-});
-
 app.post('/api/sms', twilioProcess.sendSMS);
 
 module.exports = app
