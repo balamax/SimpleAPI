@@ -8,7 +8,8 @@
     { "src": "*.html", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "*.html", "dest": "./public" },
+    { "src": "/*.html", "dest": "./public" },
+    { "src": "/sms", "methods": ["POST"], "dest": "/spi/sms" },
     { "src": "/(.*)", "dest": "server.js" }
   ]
 }
