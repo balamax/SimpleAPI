@@ -12,7 +12,7 @@ const twilioProcess = {
           if(request.body.atkn == null || request.body.message == null){
             return res.send({success:false, error: 'Invalid request property'});
           }
-          if(request.body.from == null || request.body.to == null){
+          if(request.body.from == null || request.body.phone == null){
             return res.send({success:false, error: 'Invalid message property'});
           }
           var accountSid = request.body.asid;
