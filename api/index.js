@@ -9,9 +9,11 @@ app.get('/api', (req, res) => {
 })
 
 app.post('/api/mms', (request, res) => {
-    console.log(request);
     const { body } = request
-    res.send(`Hello ${body.name}, you just parsed the request body!`)
+    const name = request?.body?.name ?? 'world';
+    console.log(name);
+    console.log(request?.body);
+    res.send(`Hello ${name}, you just parsed the request body!`)
   }
   );
 
