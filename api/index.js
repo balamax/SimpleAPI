@@ -8,12 +8,12 @@ app.get('/api', (req, res) => {
   res.end('Api services are running!')
 })
 
-app.post('/api/mms', (request, res) => {
-    const { body } = request
-    const name = request?.body?.name ?? 'world';
+app.post('/api/mms', (req, res) => {
+    console.log(req.body);
+    const name = req?.body?.name ?? 'world';
     console.log(name);
-    console.log(request?.body);
-    res.send(`Hello ${name}, you just parsed the request body!`)
+    console.log(req?.body);
+    res.send(`Hello ${name}, you just parsed the req body!`)
   }
   );
 
