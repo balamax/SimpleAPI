@@ -23,7 +23,7 @@ const twilioProcess = {
           client.messages.create({
               body: request.body.message,
               to: request.body.to, 
-              from: request.body.from 
+              from: request.body.phone 
           })
           .then((message) => {
             console.log(message);
