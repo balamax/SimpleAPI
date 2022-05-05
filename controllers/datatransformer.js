@@ -11,7 +11,7 @@ const datatransformationProcess = {
             function generateUsername(firstname, surname) {
             return `${firstname[0]}-${surname}`.toLowerCase();
             }
-            fs.createReadStream('input_1.csv')
+            fs.createReadStream('input.csv')
             .pipe(csv())
             .on('data', function (row) {
                 //const username = generateUsername(row.Firstname, row.Surname);
@@ -79,6 +79,40 @@ const datatransformationProcess = {
                 const header = ["Values"];
                 writeToCSVFile(header, result);
             })
+            res.send({success:true});
+        
+        } catch (err) {
+            console.log(err.type);
+            console.log(err.message);
+            res.send(err);
+        }
+    },
+
+    async generateDates (request, res) {
+        try{
+            console.log(request.body);
+            var onlyDays = request.body.onlyDays;
+            var startDate = new Date("2021-08-01"), endDate = new Date("2021-10-01");
+            const result = [];
+
+            function getdateValue(value) {
+                return '.'+value.toISOString().slice(0,10).replace(/-/g,"-");;
+            }
+
+            while (startDate <= endDate) {
+                if(onlyDays.hasOwnProperty(startDate.getDay())){
+                    let line = {
+                        row1: getdateValue(startDate),
+                        row2: ''
+                    }
+                    result.push(line);
+                }
+                startDate.setDate(startDate.getDate() + 1);
+            }
+            
+            console.table(result);
+            const header = ["Values"];
+            writeToCSVFile(header, result);
             res.send({success:true});
         
         } catch (err) {

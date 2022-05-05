@@ -2,7 +2,8 @@ var express = require('express');
 // get an instance of router
 var router = express.Router();
 const twilioProcess = require('./controllers/twilio')
-const datatransformationProcess = require('./controllers/datatransformer')
+const emailProcess = require('./controllers/email')
+//const datatransformationProcess = require('./controllers/datatransformer')
 
 // route middleware that will happen on every request
 router.use(function(req, res, next) {
@@ -21,7 +22,14 @@ router.get('/', function(req, res) {
 
 router.post('/api/sms', twilioProcess.sendSMS);
 
-router.post('/api/data', datatransformationProcess.createPermutation);
+
+router.post('/api/mail', emailProcess.sendMail);
+
+
+/*
+router.post('/api/data/createPermutation', datatransformationProcess.createPermutation);
 router.post('/api/data/generatelist', datatransformationProcess.generateListItems);
+router.post('/api/data/generateDates', datatransformationProcess.generateDates);
+*/
 
 module.exports = router;
