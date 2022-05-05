@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-let token = "ewtysrjyvwgqmzhj";
+let token = "";
 
 const emailProcess = {
     async sendMail (request, res) {
@@ -9,7 +9,7 @@ const emailProcess = {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                  user: 'hi@ceverjob.in',
+                  user: 'hi@cleverjob.in',
                   pass: token,
                 },
               });
